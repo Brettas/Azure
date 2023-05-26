@@ -1,0 +1,55 @@
+﻿@model PaisMVC.Models.Amigo.IncluiAmigoList
+
+@{
+    ViewData["Title"] = "Exclui amigo da lista";
+}
+
+<h1>Excluir amigo da lista</h1>
+
+<h4>Amigo</h4>
+<hr />
+<div class="col-sm-3">
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" style="width: 18rem; height: 14rem; max-height: 100%;" src="@Model.Amigo?.FotografiaId" alt="@Model.Amigo?.Nome">
+        <div class="card-body">
+            <h5 class="card-title">@Model.Amigo.Nome @Model.Amigo.Sobrenome</h5>
+            <p>@Model.Amigo.Nascimento</p>
+            <p>@Model.Amigo.Telefone</p>
+            <p>@Model.Amigo.Email</p>
+        </div>
+    </div>
+</div>
+
+<h4>Amigo a excluir</h4>
+<hr />
+
+<div class="col-sm-3">
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" style="width: 18rem; height: 14rem; max-height: 100%;" src="@Model.AmigoList.FotografiaId" alt="@Model.AmigoList.Nome">
+        <div class="card-body">
+            <h5 class="card-title">@Model.AmigoList.Nome @Model.AmigoList.Sobrenome</h5>
+            <p>@Model.AmigoList.Nascimento</p>
+            <p>@Model.AmigoList.Telefone</p>
+            <p>@Model.AmigoList.Email</p>
+        </div>
+    </div>
+</div>
+
+<form asp-action="ExcluiAmigoLista" enctype="multipart/form-data">
+    <div>
+        <h5>Você tem certeza de que quer excluir este Amigo de sua lista?</h5>
+    </div>
+    @Html.HiddenFor(m => m.Id)
+    @Html.HiddenFor(m => m.AmigoId)
+    <div class="form-group">
+        <input type="submit" value="Exclui Amigo da lista" class="btn btn-primary"/>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Voltar à lista</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
